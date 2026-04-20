@@ -18,8 +18,22 @@
       --win: #238636;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 16px; max-width: 900px; margin: 0 auto; }
-    .header { background: linear-gradient(135deg, var(--green) 0%, #1a3a1a 100%); border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 20px; border: 1px solid var(--green-light); }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .header {
+      background: linear-gradient(135deg, var(--green) 0%, #1a3a1a 100%);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      border: 1px solid var(--green-light);
+    }
     .header h1 { font-size: 1.6rem; font-weight: 800; }
     .header .subtitle { color: #a0c8a0; font-size: 0.85rem; margin-top: 4px; }
     .header .updated { color: #6a9e6a; font-size: 0.75rem; margin-top: 8px; }
@@ -83,55 +97,175 @@
   </style>
 </head>
 <body>
+
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Sunday, April 19, 2026 · Games through April 19</div>
+  <div class="updated">Last updated: Monday, April 20, 2026 · Games through April 19</div>
 </div>
+
 <div class="scoreboard">
-  <div class="score-card power"><div class="name">⚡ Power</div><div class="amount" id="power-total">$0</div><div class="wins" id="power-wins">0 game wins</div></div>
+  <div class="score-card power">
+    <div class="name">⚡ Power</div>
+    <div class="amount" id="power-total">$0</div>
+    <div class="wins" id="power-wins">0 game wins</div>
+  </div>
   <div class="vs-badge"><span>VS</span></div>
-  <div class="score-card kano"><div class="name">🤙 Kano</div><div class="amount" id="kano-total">$0</div><div class="wins" id="kano-wins">0 game wins</div></div>
+  <div class="score-card kano">
+    <div class="name">🤙 Kano</div>
+    <div class="amount" id="kano-total">$0</div>
+    <div class="wins" id="kano-wins">0 game wins</div>
+  </div>
 </div>
+
 <div class="standings-bar">
   <span class="label">Power</span>
-  <div class="bar-track"><div class="bar-power" id="bar-power" style="width:50%"></div><div class="bar-kano" id="bar-kano" style="width:50%"></div></div>
+  <div class="bar-track">
+    <div class="bar-power" id="bar-power" style="width:50%"></div>
+    <div class="bar-kano"  id="bar-kano"  style="width:50%"></div>
+  </div>
   <span class="label">Kano</span>
   <span class="leading" id="leading-text" style="color:var(--muted)">Even</span>
 </div>
+
 <div class="round-header">Round 1 — First Round</div>
 <div class="series-list" id="series-list"></div>
-<div class="footer">🏆 $50/win · +$20/OT period · $100 series bonus · Built by Dude 🤙</div>
+
+<div class="footer">
+  🏆 $50/win · +$20/OT period · $100 series bonus · Built by Dude 🤙
+</div>
+
 <script>
-const PICKS={"Carolina vs Ottawa":["Carolina","Ottawa"],"Pittsburgh vs Philadelphia":["Pittsburgh","Philadelphia"],"Tampa Bay vs Montreal":["Montreal","Tampa Bay"],"Buffalo vs Boston":["Boston","Buffalo"],"Dallas vs Minnesota":["Minnesota","Dallas"],"Colorado vs LA Kings":["Colorado","LA Kings"],"Vegas vs Utah":["Vegas","Utah"],"Edmonton vs Anaheim":["Anaheim","Edmonton"]};
-const GAMES=[
-{series:"Carolina vs Ottawa",game:1,date:"Sat Apr 18",home:"Carolina",homeScore:2,away:"Ottawa",awayScore:0,ot:null,winner:"Carolina"},
-{series:"Dallas vs Minnesota",game:1,date:"Sat Apr 18",home:"Dallas",homeScore:1,away:"Minnesota",awayScore:6,ot:null,winner:"Minnesota"},
-{series:"Pittsburgh vs Philadelphia",game:1,date:"Sat Apr 18",home:"Pittsburgh",homeScore:2,away:"Philadelphia",awayScore:3,ot:null,winner:"Philadelphia"},
-{series:"Colorado vs LA Kings",game:1,date:"Sun Apr 19",home:"Colorado",homeScore:2,away:"LA Kings",awayScore:1,ot:null,winner:"Colorado"},
-{series:"Tampa Bay vs Montreal",game:1,date:"Sun Apr 19",home:"Tampa Bay",homeScore:3,away:"Montreal",awayScore:4,ot:"OT",winner:"Montreal"},
-{series:"Buffalo vs Boston",game:1,date:"Sun Apr 19",home:"Buffalo",homeScore:null,away:"Boston",awayScore:null,ot:null,winner:null},
-{series:"Vegas vs Utah",game:1,date:"Sun Apr 19",home:"Vegas",homeScore:null,away:"Utah",awayScore:null,ot:null,winner:null},
-{series:"Carolina vs Ottawa",game:2,date:"Mon Apr 20",home:"Carolina",homeScore:null,away:"Ottawa",awayScore:null,ot:null,winner:null},
-{series:"Pittsburgh vs Philadelphia",game:2,date:"Mon Apr 20",home:"Pittsburgh",homeScore:null,away:"Philadelphia",awayScore:null,ot:null,winner:null},
-{series:"Dallas vs Minnesota",game:2,date:"Mon Apr 20",home:"Dallas",homeScore:null,away:"Minnesota",awayScore:null,ot:null,winner:null},
-{series:"Edmonton vs Anaheim",game:1,date:"Mon Apr 20",home:"Edmonton",homeScore:null,away:"Anaheim",awayScore:null,ot:null,winner:null}
+const PICKS = {
+  "Carolina vs Ottawa":           ["Carolina",      "Ottawa"],
+  "Pittsburgh vs Philadelphia":   ["Pittsburgh",    "Philadelphia"],
+  "Tampa Bay vs Montreal":        ["Montreal",      "Tampa Bay"],
+  "Buffalo vs Boston":            ["Boston",        "Buffalo"],
+  "Dallas vs Minnesota":          ["Minnesota",     "Dallas"],
+  "Colorado vs LA Kings":         ["Colorado",      "LA Kings"],
+  "Vegas vs Utah":                ["Vegas",         "Utah"],
+  "Edmonton vs Anaheim":          ["Anaheim",       "Edmonton"],
+};
+
+const GAMES = [
+  // April 18 results
+  { series:"Carolina vs Ottawa",          game:1, date:"Sat Apr 18", home:"Carolina",     homeScore:2, away:"Ottawa",        awayScore:0, ot:null, winner:"Carolina" },
+  { series:"Dallas vs Minnesota",         game:1, date:"Sat Apr 18", home:"Dallas",       homeScore:1, away:"Minnesota",     awayScore:6, ot:null, winner:"Minnesota" },
+  { series:"Pittsburgh vs Philadelphia",  game:1, date:"Sat Apr 18", home:"Pittsburgh",   homeScore:2, away:"Philadelphia",  awayScore:3, ot:null, winner:"Philadelphia" },
+  // April 19 results
+  { series:"Colorado vs LA Kings",        game:1, date:"Sun Apr 19", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:null, winner:"Colorado" },
+  { series:"Tampa Bay vs Montreal",       game:1, date:"Sun Apr 19", home:"Tampa Bay",    homeScore:3, away:"Montreal",   awayScore:4, ot:"OT", winner:"Montreal" },
+  { series:"Buffalo vs Boston",           game:1, date:"Sun Apr 19", home:"Buffalo",      homeScore:4, away:"Boston",     awayScore:3, ot:null, winner:"Buffalo" },
+  { series:"Vegas vs Utah",               game:1, date:"Sun Apr 19", home:"Vegas",        homeScore:4, away:"Utah",       awayScore:2, ot:null, winner:"Vegas" },
+  // April 20
+  { series:"Carolina vs Ottawa",          game:2, date:"Mon Apr 20", home:"Carolina",     homeScore:null, away:"Ottawa",     awayScore:null, ot:null, winner:null },
+  { series:"Pittsburgh vs Philadelphia",  game:2, date:"Mon Apr 20", home:"Pittsburgh",   homeScore:null, away:"Philadelphia",awayScore:null,ot:null, winner:null },
+  { series:"Dallas vs Minnesota",         game:2, date:"Mon Apr 20", home:"Dallas",       homeScore:null, away:"Minnesota",  awayScore:null, ot:null, winner:null },
+  { series:"Edmonton vs Anaheim",         game:1, date:"Mon Apr 20", home:"Edmonton",     homeScore:null, away:"Anaheim",    awayScore:null, ot:null, winner:null },
 ];
-const SO=["Carolina vs Ottawa","Pittsburgh vs Philadelphia","Tampa Bay vs Montreal","Buffalo vs Boston","Dallas vs Minnesota","Colorado vs LA Kings","Vegas vs Utah","Edmonton vs Anaheim"];
-function ot(o){if(!o)return 0;const m=(o+"").match(/(\d+)/);return m?parseInt(m[1]):1;}
-function earn(g){if(!g.winner)return{power:0,kano:0};const[pp,kp]=PICKS[g.series];const w=g.winner.toLowerCase();const b=50+ot(g.ot)*20;if(w.includes(pp.toLowerCase()))return{power:b,kano:0};if(w.includes(kp.toLowerCase()))return{power:0,kano:b};return{power:0,kano:0};}
-function build(){let pt=0,kt=0,pw=0,kw=0;const sg={};for(const s of SO)sg[s]=[];for(const g of GAMES){sg[g.series].push(g);const{power,kano}=earn(g);pt+=power;kt+=kano;if(power>0)pw++;if(kano>0)kw++;}
-document.getElementById("power-total").textContent="$"+pt;
-document.getElementById("kano-total").textContent="$"+kt;
-document.getElementById("power-wins").textContent=pw+" game win"+(pw!==1?"s":"");
-document.getElementById("kano-wins").textContent=kw+" game win"+(kw!==1?"s":"");
-const tot=pt+kt;if(tot>0){document.getElementById("bar-power").style.width=(pt/tot*100).toFixed(1)+"%";document.getElementById("bar-kano").style.width=(kt/tot*100).toFixed(1)+"%";const diff=Math.abs(pt-kt);if(pt>kt)document.getElementById("leading-text").innerHTML='<span style="color:var(--power)">Power +$'+diff+'</span>';else if(kt>pt)document.getElementById("leading-text").innerHTML='<span style="color:var(--kano)">Kano +$'+diff+'</span>';else document.getElementById("leading-text").textContent="Tied";}
-const c=document.getElementById("series-list");c.innerHTML="";
-for(const sName of SO){const games=sg[sName]||[];const[pp,kp]=PICKS[sName];let pw2=0,kw2=0,sm={power:0,kano:0};for(const g of games){if(g.winner){const w=g.winner.toLowerCase();if(w.includes(pp.toLowerCase()))pw2++;else if(w.includes(kp.toLowerCase()))kw2++;const e=earn(g);sm.power+=e.power;sm.kano+=e.kano;}}
-const card=document.createElement("div");card.className="series-card";
-const rows=games.map(g=>{const played=g.winner!==null;const{power,kano}=earn(g);const e=power>0?'<span class="earner-power">+$'+power+' Power</span>':kano>0?'<span class="earner-kano">+$'+kano+' Kano</span>':'<span class="earner-none">—</span>';const sc=played?g.home+" "+g.homeScore+"–"+g.awayScore+" "+g.away:g.home+" vs "+g.away;const os=g.ot?'<span class="badge-ot">'+g.ot+'</span>':played?'<span class="badge-win">REG</span>':'<span class="badge-upcoming">—</span>';const wn=played?"<strong>"+g.winner+"</strong>":'<span class="badge-upcoming">'+g.date+"</span>";return'<tr class="'+(played?"played":"upcoming")+'"><td>'+g.game+"</td><td>"+g.date+"</td><td>"+sc+"</td><td>"+os+"</td><td>"+wn+"</td><td>"+e+"</td></tr>";}).join("");
-card.innerHTML='<div class="series-head"><div class="team-pick"><div class="team-name">'+pp+'</div><div class="picker power-pick">⚡ Power</div></div><div class="series-status"><div class="series-record">'+pw2+"–"+kw2+'</div><div class="series-label">series</div></div><div class="team-pick right"><div class="team-name">'+kp+'</div><div class="picker kano-pick">🤙 Kano</div></div></div><div class="money-row"><div><div class="label">Power earnings</div><div class="val power">$'+sm.power+'</div></div><div><div class="label">Kano earnings</div><div class="val kano">$'+sm.kano+'</div></div></div><table class="games-table"><thead><tr><th>Gm</th><th>Date</th><th>Score</th><th>OT</th><th>Winner</th><th>Earns</th></tr></thead><tbody>'+rows+"</tbody></table>";
-c.appendChild(card);}}
+
+const SERIES_ORDER = [
+  "Carolina vs Ottawa",
+  "Pittsburgh vs Philadelphia",
+  "Tampa Bay vs Montreal",
+  "Buffalo vs Boston",
+  "Dallas vs Minnesota",
+  "Colorado vs LA Kings",
+  "Vegas vs Utah",
+  "Edmonton vs Anaheim",
+];
+
+function otPeriods(ot) {
+  if (!ot) return 0;
+  const m = (ot + "").match(/(\d+)/);
+  return m ? parseInt(m[1]) : 1;
+}
+
+function calcEarnings(game) {
+  if (!game.winner) return { power: 0, kano: 0 };
+  const [pp, kp] = PICKS[game.series];
+  const w = game.winner.toLowerCase();
+  const bonus = otPeriods(game.ot) * 20;
+  const base = 50 + bonus;
+  if (w.includes(pp.toLowerCase())) return { power: base, kano: 0 };
+  if (w.includes(kp.toLowerCase())) return { power: 0, kano: base };
+  return { power: 0, kano: 0 };
+}
+
+function build() {
+  let pt = 0, kt = 0, pw = 0, kw = 0;
+  const sg = {};
+  for (const s of SERIES_ORDER) sg[s] = [];
+  for (const g of GAMES) {
+    sg[g.series].push(g);
+    const { power, kano } = calcEarnings(g);
+    pt += power; kt += kano;
+    if (power > 0) pw++;
+    if (kano > 0) kw++;
+  }
+
+  document.getElementById("power-total").textContent = "$" + pt;
+  document.getElementById("kano-total").textContent  = "$" + kt;
+  document.getElementById("power-wins").textContent  = pw + " game win" + (pw !== 1 ? "s" : "");
+  document.getElementById("kano-wins").textContent   = kw + " game win" + (kw !== 1 ? "s" : "");
+
+  const tot = pt + kt;
+  if (tot > 0) {
+    document.getElementById("bar-power").style.width = (pt/tot*100).toFixed(1) + "%";
+    document.getElementById("bar-kano").style.width  = (kt/tot*100).toFixed(1) + "%";
+    const diff = Math.abs(pt - kt);
+    if (pt > kt)      document.getElementById("leading-text").innerHTML = '<span style="color:var(--power)">Power +$' + diff + '</span>';
+    else if (kt > pt) document.getElementById("leading-text").innerHTML = '<span style="color:var(--kano)">Kano +$' + diff + '</span>';
+    else              document.getElementById("leading-text").textContent = "Tied";
+  }
+
+  const container = document.getElementById("series-list");
+  container.innerHTML = "";
+  for (const sName of SERIES_ORDER) {
+    const games = sg[sName] || [];
+    const [pp, kp] = PICKS[sName];
+    let pwins = 0, kwins = 0, sm = { power: 0, kano: 0 };
+    for (const g of games) {
+      if (g.winner) {
+        const w = g.winner.toLowerCase();
+        if (w.includes(pp.toLowerCase())) pwins++;
+        else if (w.includes(kp.toLowerCase())) kwins++;
+        const e = calcEarnings(g);
+        sm.power += e.power; sm.kano += e.kano;
+      }
+    }
+    const card = document.createElement("div");
+    card.className = "series-card";
+    const rows = games.map(g => {
+      const played = g.winner !== null;
+      const { power, kano } = calcEarnings(g);
+      const earn = power > 0 ? '<span class="earner-power">+$' + power + ' Power</span>'
+                 : kano > 0  ? '<span class="earner-kano">+$' + kano + ' Kano</span>'
+                 : '<span class="earner-none">—</span>';
+      const score = played ? g.home + " " + g.homeScore + "–" + g.awayScore + " " + g.away
+                           : g.home + " vs " + g.away;
+      const otStr = g.ot ? '<span class="badge-ot">' + g.ot + '</span>'
+                         : played ? '<span class="badge-win">REG</span>'
+                         : '<span class="badge-upcoming">—</span>';
+      const win = played ? "<strong>" + g.winner + "</strong>"
+                         : '<span class="badge-upcoming">' + g.date + "</span>";
+      return '<tr class="' + (played ? "played" : "upcoming") + '">' +
+        "<td>" + g.game + "</td><td>" + g.date + "</td><td>" + score + "</td><td>" + otStr + "</td><td>" + win + "</td><td>" + earn + "</td></tr>";
+    }).join("");
+    card.innerHTML =
+      '<div class="series-head">' +
+        '<div class="team-pick"><div class="team-name">' + pp + '</div><div class="picker power-pick">⚡ Power</div></div>' +
+        '<div class="series-status"><div class="series-record">' + pwins + "–" + kwins + '</div><div class="series-label">series</div></div>' +
+        '<div class="team-pick right"><div class="team-name">' + kp + '</div><div class="picker kano-pick">🤙 Kano</div></div>' +
+      "</div>" +
+      '<div class="money-row"><div><div class="label">Power earnings</div><div class="val power">$' + sm.power + '</div></div>' +
+      '<div><div class="label">Kano earnings</div><div class="val kano">$' + sm.kano + '</div></div></div>' +
+      '<table class="games-table"><thead><tr><th>Gm</th><th>Date</th><th>Score</th><th>OT</th><th>Winner</th><th>Earns</th></tr></thead><tbody>' +
+      rows + "</tbody></table>";
+    container.appendChild(card);
+  }
+}
+
 build();
 </script>
 </body>
