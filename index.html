@@ -18,14 +18,7 @@
       --win: #238636;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding: 16px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 16px; max-width: 900px; margin: 0 auto; }
     .header { background: linear-gradient(135deg, var(--green) 0%, #1a3a1a 100%); border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 20px; border: 1px solid var(--green-light); }
     .header h1 { font-size: 1.6rem; font-weight: 800; }
     .header .subtitle { color: #a0c8a0; font-size: 0.85rem; margin-top: 4px; }
@@ -93,7 +86,7 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Sunday, April 19, 2026 · Games through April 19 (partial)</div>
+  <div class="updated">Last updated: Sunday, April 19, 2026 · Games through April 19</div>
 </div>
 <div class="scoreboard">
   <div class="score-card power"><div class="name">⚡ Power</div><div class="amount" id="power-total">$0</div><div class="wins" id="power-wins">0 game wins</div></div>
@@ -116,7 +109,7 @@ const GAMES=[
 {series:"Dallas vs Minnesota",game:1,date:"Sat Apr 18",home:"Dallas",homeScore:1,away:"Minnesota",awayScore:6,ot:null,winner:"Minnesota"},
 {series:"Pittsburgh vs Philadelphia",game:1,date:"Sat Apr 18",home:"Pittsburgh",homeScore:2,away:"Philadelphia",awayScore:3,ot:null,winner:"Philadelphia"},
 {series:"Colorado vs LA Kings",game:1,date:"Sun Apr 19",home:"Colorado",homeScore:2,away:"LA Kings",awayScore:1,ot:null,winner:"Colorado"},
-{series:"Tampa Bay vs Montreal",game:1,date:"Sun Apr 19",home:"Tampa Bay",homeScore:null,away:"Montreal",awayScore:null,ot:null,winner:null},
+{series:"Tampa Bay vs Montreal",game:1,date:"Sun Apr 19",home:"Tampa Bay",homeScore:3,away:"Montreal",awayScore:4,ot:"OT",winner:"Montreal"},
 {series:"Buffalo vs Boston",game:1,date:"Sun Apr 19",home:"Buffalo",homeScore:null,away:"Boston",awayScore:null,ot:null,winner:null},
 {series:"Vegas vs Utah",game:1,date:"Sun Apr 19",home:"Vegas",homeScore:null,away:"Utah",awayScore:null,ot:null,winner:null},
 {series:"Carolina vs Ottawa",game:2,date:"Mon Apr 20",home:"Carolina",homeScore:null,away:"Ottawa",awayScore:null,ot:null,winner:null},
