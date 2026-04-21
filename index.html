@@ -37,18 +37,18 @@
     .header h1 { font-size: 1.6rem; font-weight: 800; }
     .header .subtitle { color: #a0c8a0; font-size: 0.85rem; margin-top: 4px; }
     .header .updated { color: #6a9e6a; font-size: 0.75rem; margin-top: 8px; }
-    .scoreboard { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; margin-bottom: 20px; align-items: center; }
-    .score-card { border-radius: 12px; padding: 20px; text-align: center; border: 2px solid; }
+    .scoreboard { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; align-items: stretch; }
+    .score-card { border-radius: 12px; padding: 18px 12px; text-align: center; border: 2px solid; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .score-card.power { background: rgba(184,32,32,0.12); border-color: var(--power); }
     .score-card.kano  { background: rgba(26,107,191,0.12); border-color: var(--kano); }
-    .score-card .name { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .score-card .name { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
     .score-card.power .name { color: #e07070; }
     .score-card.kano  .name { color: #70aaee; }
-    .score-card .amount { font-size: 2.8rem; font-weight: 900; margin: 4px 0; letter-spacing: -1px; }
+    .score-card .amount { font-size: 2.6rem; font-weight: 900; margin: 4px 0; letter-spacing: -1px; line-height: 1; }
     .score-card.power .amount { color: #f08080; }
     .score-card.kano  .amount { color: #80baff; }
-    .score-card .wins { font-size: 0.8rem; color: var(--muted); }
-    .vs-badge { display: flex; align-items: center; justify-content: center; }
+    .score-card .wins { font-size: 0.75rem; color: var(--muted); }
+    .vs-badge { display: none; }
     .vs-badge span { background: var(--card); border: 1px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--muted); }
     .standings-bar { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; font-size: 0.85rem; }
     .standings-bar .label { color: var(--muted); flex-shrink: 0; }
@@ -90,8 +90,6 @@
     .earner-none  { color: var(--muted); }
     .footer { text-align: center; color: var(--muted); font-size: 0.72rem; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
     @media (max-width: 500px) {
-      .scoreboard { grid-template-columns: 1fr 1fr; }
-      .vs-badge { display: none; }
       .series-head { grid-template-columns: 1fr 60px 1fr; }
     }
   </style>
