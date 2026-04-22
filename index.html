@@ -99,7 +99,7 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Tuesday, April 21, 2026 · Games through April 20 (all complete)</div>
+  <div class="updated">Last updated: Wednesday, April 22, 2026 · Games through April 21 (all complete)</div>
 </div>
 
 <div class="scoreboard">
@@ -130,7 +130,7 @@
 <div class="series-list" id="series-list"></div>
 
 <div class="footer">
-  🏆 $50/win · +$20/OT period · $100 series bonus · Built by Dude 🤙
+  🏒 $50/win · +$20/OT period · $100 series bonus · Built by Dude 🤙
 </div>
 
 <script>
@@ -160,6 +160,11 @@ const GAMES = [
   { series:"Carolina vs Ottawa",          game:2, date:"Mon Apr 20", home:"Carolina",     homeScore:3, away:"Ottawa",     awayScore:2, ot:"2OT", winner:"Carolina" },
   { series:"Dallas vs Minnesota",         game:2, date:"Mon Apr 20", home:"Dallas",       homeScore:4, away:"Minnesota",  awayScore:2, ot:null, winner:"Dallas" },
   { series:"Edmonton vs Anaheim",         game:1, date:"Mon Apr 20", home:"Edmonton",     homeScore:4, away:"Anaheim",    awayScore:3, ot:null, winner:"Edmonton" },
+  // April 21 results
+  { series:"Colorado vs LA Kings",        game:2, date:"Mon Apr 21", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:"OT",  winner:"Colorado" },
+  { series:"Tampa Bay vs Montreal",       game:2, date:"Mon Apr 21", home:"Tampa Bay",    homeScore:3, away:"Montreal",   awayScore:2, ot:"OT",  winner:"Tampa Bay" },
+  { series:"Vegas vs Utah",               game:2, date:"Tue Apr 21", home:"Vegas",        homeScore:2, away:"Utah",       awayScore:3, ot:null,  winner:"Utah" },
+  { series:"Buffalo vs Boston",           game:2, date:"Tue Apr 21", home:"Buffalo",      homeScore:2, away:"Boston",     awayScore:4, ot:null,  winner:"Boston" },
 ];
 
 const SERIES_ORDER = [
@@ -247,19 +252,19 @@ function build() {
                          : '<span class="badge-upcoming">—</span>';
       const win = played ? "<strong>" + g.winner + "</strong>"
                          : '<span class="badge-upcoming">' + g.date + "</span>";
-      return '<tr class="' + (played ? "played" : "upcoming") + '">'
-        + "<td>" + g.game + "</td><td>" + g.date + "</td><td>" + score + "</td><td>" + otStr + "</td><td>" + win + "</td><td>" + earn + "</td></tr>";
+      return '<tr class="' + (played ? "played" : "upcoming") + '">' +
+        "<td>" + g.game + "</td><td>" + g.date + "</td><td>" + score + "</td><td>" + otStr + "</td><td>" + win + "</td><td>" + earn + "</td></tr>";
     }).join("");
     card.innerHTML =
-      '<div class="series-head">'
-        + '<div class="team-pick"><div class="team-name">' + pp + '</div><div class="picker power-pick">⚡ Power</div></div>'
-        + '<div class="series-status"><div class="series-record">' + pwins + "–" + kwins + '</div><div class="series-label">series</div></div>'
-        + '<div class="team-pick right"><div class="team-name">' + kp + '</div><div class="picker kano-pick">🤙 Kano</div></div>'
-      + "</div>"
-      + '<div class="money-row"><div><div class="label">Power earnings</div><div class="val power">$' + sm.power + '</div></div>'
-      + '<div><div class="label">Kano earnings</div><div class="val kano">$' + sm.kano + '</div></div></div>'
-      + '<table class="games-table"><thead><tr><th>Gm</th><th>Date</th><th>Score</th><th>OT</th><th>Winner</th><th>Earns</th></tr></thead><tbody>'
-      + rows + "</tbody></table>";
+      '<div class="series-head">' +
+        '<div class="team-pick"><div class="team-name">' + pp + '</div><div class="picker power-pick">⚡ Power</div></div>' +
+        '<div class="series-status"><div class="series-record">' + pwins + "–" + kwins + '</div><div class="series-label">series</div></div>' +
+        '<div class="team-pick right"><div class="team-name">' + kp + '</div><div class="picker kano-pick">🤙 Kano</div></div>' +
+      "</div>" +
+      '<div class="money-row"><div><div class="label">Power earnings</div><div class="val power">$' + sm.power + '</div></div>' +
+      '<div><div class="label">Kano earnings</div><div class="val kano">$' + sm.kano + '</div></div></div>' +
+      '<table class="games-table"><thead><tr><th>Gm</th><th>Date</th><th>Score</th><th>OT</th><th>Winner</th><th>Earns</th></tr></thead><tbody>' +
+      rows + "</tbody></table>";
     container.appendChild(card);
   }
 }
