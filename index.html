@@ -99,7 +99,7 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Wednesday, April 22, 2026 · Games through April 21 (all complete)</div>
+  <div class="updated">Last updated: Thursday, April 23, 2026 · Games through April 22 (all complete)</div>
 </div>
 
 <div class="scoreboard">
@@ -130,7 +130,7 @@
 <div class="series-list" id="series-list"></div>
 
 <div class="footer">
-  🏒 $50/win · +$20/OT period · $100 series bonus · Built by Dude 🤙
+  🏆 $50/win · +$20/OT period · $100 series bonus · Built by Dude 🤙
 </div>
 
 <script>
@@ -161,10 +161,14 @@ const GAMES = [
   { series:"Dallas vs Minnesota",         game:2, date:"Mon Apr 20", home:"Dallas",       homeScore:4, away:"Minnesota",  awayScore:2, ot:null, winner:"Dallas" },
   { series:"Edmonton vs Anaheim",         game:1, date:"Mon Apr 20", home:"Edmonton",     homeScore:4, away:"Anaheim",    awayScore:3, ot:null, winner:"Edmonton" },
   // April 21 results
-  { series:"Colorado vs LA Kings",        game:2, date:"Mon Apr 21", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:"OT",  winner:"Colorado" },
-  { series:"Tampa Bay vs Montreal",       game:2, date:"Mon Apr 21", home:"Tampa Bay",    homeScore:3, away:"Montreal",   awayScore:2, ot:"OT",  winner:"Tampa Bay" },
-  { series:"Vegas vs Utah",               game:2, date:"Tue Apr 21", home:"Vegas",        homeScore:2, away:"Utah",       awayScore:3, ot:null,  winner:"Utah" },
-  { series:"Buffalo vs Boston",           game:2, date:"Tue Apr 21", home:"Buffalo",      homeScore:2, away:"Boston",     awayScore:4, ot:null,  winner:"Boston" },
+  { series:"Colorado vs LA Kings",         game:2, date:"Mon Apr 21", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:"OT",  winner:"Colorado" },
+  { series:"Tampa Bay vs Montreal",        game:2, date:"Mon Apr 21", home:"Tampa Bay",    homeScore:3, away:"Montreal",  awayScore:2, ot:"OT",  winner:"Tampa Bay" },
+  { series:"Vegas vs Utah",               game:2, date:"Tue Apr 21", home:"Vegas",        homeScore:2, away:"Utah",     awayScore:3, ot:null,  winner:"Utah" },
+  { series:"Buffalo vs Boston",           game:2, date:"Tue Apr 21", home:"Buffalo",      homeScore:2, away:"Boston",   awayScore:4, ot:null,  winner:"Boston" },
+  // April 22 results
+  { series:"Pittsburgh vs Philadelphia",  game:3, date:"Wed Apr 22", home:"Philadelphia", homeScore:5, away:"Pittsburgh", awayScore:2, ot:null,  winner:"Philadelphia" },
+  { series:"Dallas vs Minnesota",         game:3, date:"Wed Apr 22", home:"Minnesota",    homeScore:3, away:"Dallas",    awayScore:4, ot:"2OT", winner:"Dallas" },
+  { series:"Edmonton vs Anaheim",         game:2, date:"Wed Apr 22", home:"Edmonton",     homeScore:4, away:"Anaheim",   awayScore:6, ot:null,  winner:"Anaheim" },
 ];
 
 const SERIES_ORDER = [
