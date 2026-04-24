@@ -83,11 +83,17 @@
     .money-row .val.power { color: #f08080; }
     .money-row .val.kano  { color: #80baff; }
     .money-row div:last-child { text-align: right; }
-    .games-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-    .games-table th { text-align: left; padding: 6px 10px; color: var(--muted); font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
-    .games-table th:last-child, .games-table td:last-child { text-align: right; padding-right: 14px; }
-    .games-table th:first-child, .games-table td:first-child { padding-left: 14px; }
-    .games-table td { padding: 7px 10px; border-bottom: 1px solid rgba(48,54,61,0.5); }
+    .games-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; table-layout: fixed; }
+    .games-table col.col-gm     { width: 28px; }
+    .games-table col.col-date   { width: 62px; }
+    .games-table col.col-score  { width: auto; }
+    .games-table col.col-ot     { width: 38px; }
+    .games-table col.col-winner { width: 88px; }
+    .games-table col.col-earns  { width: 78px; }
+    .games-table th { text-align: left; padding: 6px 6px; color: var(--muted); font-weight: 600; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); white-space: nowrap; overflow: hidden; }
+    .games-table th:last-child, .games-table td:last-child { text-align: right; padding-right: 12px; }
+    .games-table th:first-child, .games-table td:first-child { padding-left: 12px; }
+    .games-table td { padding: 7px 6px; border-bottom: 1px solid rgba(48,54,61,0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
     .games-table tr:last-child td { border-bottom: none; }
     .games-table tr.upcoming td { color: var(--muted); font-style: italic; }
     .badge-win { color: #3fb950; font-weight: 700; }
@@ -155,32 +161,32 @@ const PICKS = {
 
 const GAMES = [
   // April 18 results
-  { series:"Carolina vs Ottawa",          game:1, date:"Sat Apr 18", home:"Carolina",     homeScore:2, away:"Ottawa",        awayScore:0, ot:null, winner:"Carolina" },
-  { series:"Dallas vs Minnesota",         game:1, date:"Sat Apr 18", home:"Dallas",       homeScore:1, away:"Minnesota",     awayScore:6, ot:null, winner:"Minnesota" },
-  { series:"Pittsburgh vs Philadelphia",  game:1, date:"Sat Apr 18", home:"Pittsburgh",   homeScore:2, away:"Philadelphia",  awayScore:3, ot:null, winner:"Philadelphia" },
+  { series:"Carolina vs Ottawa",          game:1, date:"Apr 18", home:"Carolina",     homeScore:2, away:"Ottawa",        awayScore:0, ot:null, winner:"Carolina" },
+  { series:"Dallas vs Minnesota",         game:1, date:"Apr 18", home:"Dallas",       homeScore:1, away:"Minnesota",     awayScore:6, ot:null, winner:"Minnesota" },
+  { series:"Pittsburgh vs Philadelphia",  game:1, date:"Apr 18", home:"Pittsburgh",   homeScore:2, away:"Philadelphia",  awayScore:3, ot:null, winner:"Philadelphia" },
   // April 19 results
-  { series:"Colorado vs LA Kings",        game:1, date:"Sun Apr 19", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:null, winner:"Colorado" },
-  { series:"Tampa Bay vs Montreal",       game:1, date:"Sun Apr 19", home:"Tampa Bay",    homeScore:3, away:"Montreal",   awayScore:4, ot:"OT", winner:"Montreal" },
-  { series:"Buffalo vs Boston",           game:1, date:"Sun Apr 19", home:"Buffalo",      homeScore:4, away:"Boston",     awayScore:3, ot:null, winner:"Buffalo" },
-  { series:"Vegas vs Utah",               game:1, date:"Sun Apr 19", home:"Vegas",        homeScore:4, away:"Utah",       awayScore:2, ot:null, winner:"Vegas" },
+  { series:"Colorado vs LA Kings",        game:1, date:"Apr 19", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:null, winner:"Colorado" },
+  { series:"Tampa Bay vs Montreal",       game:1, date:"Apr 19", home:"Tampa Bay",    homeScore:3, away:"Montreal",   awayScore:4, ot:"OT", winner:"Montreal" },
+  { series:"Buffalo vs Boston",           game:1, date:"Apr 19", home:"Buffalo",      homeScore:4, away:"Boston",     awayScore:3, ot:null, winner:"Buffalo" },
+  { series:"Vegas vs Utah",               game:1, date:"Apr 19", home:"Vegas",        homeScore:4, away:"Utah",       awayScore:2, ot:null, winner:"Vegas" },
   // April 20 results
-  { series:"Pittsburgh vs Philadelphia",  game:2, date:"Mon Apr 20", home:"Pittsburgh",   homeScore:0, away:"Philadelphia",awayScore:3, ot:null, winner:"Philadelphia" },
-  { series:"Carolina vs Ottawa",          game:2, date:"Mon Apr 20", home:"Carolina",     homeScore:3, away:"Ottawa",     awayScore:2, ot:"2OT", winner:"Carolina" },
-  { series:"Dallas vs Minnesota",         game:2, date:"Mon Apr 20", home:"Dallas",       homeScore:4, away:"Minnesota",  awayScore:2, ot:null, winner:"Dallas" },
-  { series:"Edmonton vs Anaheim",         game:1, date:"Mon Apr 20", home:"Edmonton",     homeScore:4, away:"Anaheim",    awayScore:3, ot:null, winner:"Edmonton" },
+  { series:"Pittsburgh vs Philadelphia",  game:2, date:"Apr 20", home:"Pittsburgh",   homeScore:0, away:"Philadelphia",awayScore:3, ot:null, winner:"Philadelphia" },
+  { series:"Carolina vs Ottawa",          game:2, date:"Apr 20", home:"Carolina",     homeScore:3, away:"Ottawa",     awayScore:2, ot:"2OT", winner:"Carolina" },
+  { series:"Dallas vs Minnesota",         game:2, date:"Apr 20", home:"Dallas",       homeScore:4, away:"Minnesota",  awayScore:2, ot:null, winner:"Dallas" },
+  { series:"Edmonton vs Anaheim",         game:1, date:"Apr 20", home:"Edmonton",     homeScore:4, away:"Anaheim",    awayScore:3, ot:null, winner:"Edmonton" },
   // April 21 results
-  { series:"Colorado vs LA Kings",        game:2, date:"Mon Apr 21", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:"OT",  winner:"Colorado" },
-  { series:"Tampa Bay vs Montreal",       game:2, date:"Mon Apr 21", home:"Tampa Bay",    homeScore:3, away:"Montreal",  awayScore:2, ot:"OT",  winner:"Tampa Bay" },
-  { series:"Vegas vs Utah",               game:2, date:"Tue Apr 21", home:"Vegas",        homeScore:2, away:"Utah",     awayScore:3, ot:null,  winner:"Utah" },
-  { series:"Buffalo vs Boston",           game:2, date:"Tue Apr 21", home:"Buffalo",      homeScore:2, away:"Boston",   awayScore:4, ot:null,  winner:"Boston" },
+  { series:"Colorado vs LA Kings",        game:2, date:"Apr 21", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:"OT",  winner:"Colorado" },
+  { series:"Tampa Bay vs Montreal",       game:2, date:"Apr 21", home:"Tampa Bay",    homeScore:3, away:"Montreal",  awayScore:2, ot:"OT",  winner:"Tampa Bay" },
+  { series:"Vegas vs Utah",               game:2, date:"Apr 21", home:"Vegas",        homeScore:2, away:"Utah",     awayScore:3, ot:null,  winner:"Utah" },
+  { series:"Buffalo vs Boston",           game:2, date:"Apr 21", home:"Buffalo",      homeScore:2, away:"Boston",   awayScore:4, ot:null,  winner:"Boston" },
   // April 22 results
-  { series:"Pittsburgh vs Philadelphia",  game:3, date:"Wed Apr 22", home:"Philadelphia", homeScore:5, away:"Pittsburgh", awayScore:2, ot:null,  winner:"Philadelphia" },
-  { series:"Dallas vs Minnesota",         game:3, date:"Wed Apr 22", home:"Minnesota",    homeScore:3, away:"Dallas",    awayScore:4, ot:"2OT", winner:"Dallas" },
-  { series:"Edmonton vs Anaheim",         game:2, date:"Wed Apr 22", home:"Edmonton",     homeScore:4, away:"Anaheim",   awayScore:6, ot:null,  winner:"Anaheim" },
+  { series:"Pittsburgh vs Philadelphia",  game:3, date:"Apr 22", home:"Philadelphia", homeScore:5, away:"Pittsburgh", awayScore:2, ot:null,  winner:"Philadelphia" },
+  { series:"Dallas vs Minnesota",         game:3, date:"Apr 22", home:"Minnesota",    homeScore:3, away:"Dallas",    awayScore:4, ot:"2OT", winner:"Dallas" },
+  { series:"Edmonton vs Anaheim",         game:2, date:"Apr 22", home:"Edmonton",     homeScore:4, away:"Anaheim",   awayScore:6, ot:null,  winner:"Anaheim" },
   // April 23 results
-  { series:"Buffalo vs Boston",           game:3, date:"Thu Apr 23", home:"Boston",       homeScore:1, away:"Buffalo",   awayScore:3, ot:null,  winner:"Buffalo" },
-  { series:"Carolina vs Ottawa",          game:3, date:"Thu Apr 23", home:"Ottawa",       homeScore:1, away:"Carolina",  awayScore:2, ot:null,  winner:"Carolina" },
-  { series:"Colorado vs LA Kings",        game:3, date:"Thu Apr 23", home:"LA Kings",     homeScore:2, away:"Colorado",  awayScore:4, ot:null,  winner:"Colorado" },
+  { series:"Buffalo vs Boston",           game:3, date:"Apr 23", home:"Boston",       homeScore:1, away:"Buffalo",   awayScore:3, ot:null,  winner:"Buffalo" },
+  { series:"Carolina vs Ottawa",          game:3, date:"Apr 23", home:"Ottawa",       homeScore:1, away:"Carolina",  awayScore:2, ot:null,  winner:"Carolina" },
+  { series:"Colorado vs LA Kings",        game:3, date:"Apr 23", home:"LA Kings",     homeScore:2, away:"Colorado",  awayScore:4, ot:null,  winner:"Colorado" },
 ];
 
 const SERIES_ORDER = [
@@ -258,11 +264,10 @@ function build() {
     const rows = games.map(g => {
       const played = g.winner !== null;
       const { power, kano } = calcEarnings(g);
-      const earn = power > 0 ? '<span class="earner-power">+$' + power + ' Power</span>'
-                 : kano > 0  ? '<span class="earner-kano">+$' + kano + ' Kano</span>'
+      const earn = power > 0 ? '<span class="earner-power">+$' + power + ' P</span>'
+                 : kano > 0  ? '<span class="earner-kano">+$' + kano + ' K</span>'
                  : '<span class="earner-none">—</span>';
-      const score = played ? g.home + " " + g.homeScore + "–" + g.awayScore + " " + g.away
-                           : g.home + " vs " + g.away;
+      const score = played ? g.homeScore + "–" + g.awayScore : "TBD";
       const otStr = g.ot ? '<span class="badge-ot">' + g.ot + '</span>'
                          : played ? '<span class="badge-win">REG</span>'
                          : '<span class="badge-upcoming">—</span>';
@@ -279,7 +284,7 @@ function build() {
       "</div>" +
       '<div class="money-row"><div><div class="label">Power earnings</div><div class="val power">$' + sm.power + '</div></div>' +
       '<div><div class="label">Kano earnings</div><div class="val kano">$' + sm.kano + '</div></div></div>' +
-      '<table class="games-table"><thead><tr><th>Gm</th><th>Date</th><th>Score</th><th>OT</th><th>Winner</th><th>Earns</th></tr></thead><tbody>' +
+      '<table class="games-table"><colgroup><col class="col-gm"><col class="col-date"><col class="col-score"><col class="col-ot"><col class="col-winner"><col class="col-earns"></colgroup><thead><tr><th>Gm</th><th>Date</th><th>Score</th><th>OT</th><th>Winner</th><th>Earns</th></tr></thead><tbody>' +
       rows + "</tbody></table>";
     container.appendChild(card);
   }
