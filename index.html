@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kano vs Power â€” 2026 NHL Playoffs</title>
-  <meta property="og:title" content="ðŸ’ Kano vs Power â€” 2026 NHL Playoffs" />
+  <title>Kano vs Power — 2026 NHL Playoffs</title>
+  <meta property="og:title" content="🏒 Kano vs Power — 2026 NHL Playoffs" />
   <meta property="og:description" content="Round 1 tracker: picks, scores, and money. Who's winning?" />
   <meta property="og:image" content="https://seankane99.github.io/kano-vs-power-nhl-2026/preview.png" />
   <meta property="og:image:width" content="1200" />
@@ -105,20 +105,20 @@
 <body>
 
 <div class="header">
-  <h1>ðŸ’ Kano vs Power</h1>
+  <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Friday, April 24, 2026 Â· Games through April 23 (all complete)</div>
+  <div class="updated">Last updated: Friday, April 24, 2026 · Games through April 23 (all complete)</div>
 </div>
 
 <div class="scoreboard">
   <div class="score-card power">
-    <div class="name">âš¡ Power</div>
+    <div class="name">⚡ Power</div>
     <div class="amount" id="power-total">$0</div>
     <div class="wins" id="power-wins">0 game wins</div>
   </div>
   <div class="vs-badge"><span>VS</span></div>
   <div class="score-card kano">
-    <div class="name">ðŸ¤™ Kano</div>
+    <div class="name">🤙 Kano</div>
     <div class="amount" id="kano-total">$0</div>
     <div class="wins" id="kano-wins">0 game wins</div>
   </div>
@@ -134,11 +134,11 @@
   <span class="leading" id="leading-text" style="color:var(--muted)">Even</span>
 </div>
 
-<div class="round-header">Round 1 â€” First Round</div>
+<div class="round-header">Round 1 — First Round</div>
 <div class="series-list" id="series-list"></div>
 
 <div class="footer">
-  ðŸ† $50/win Â· +$20/OT period Â· $100 series bonus Â· Built by Dude ðŸ¤™
+  🏆 $50/win · +$20/OT period · $100 series bonus · Built by Dude 🤙
 </div>
 
 <script>
@@ -169,8 +169,8 @@ const GAMES = [
   { series:"Dallas vs Minnesota",         game:2, date:"Mon Apr 20", home:"Dallas",       homeScore:4, away:"Minnesota",  awayScore:2, ot:null, winner:"Dallas" },
   { series:"Edmonton vs Anaheim",         game:1, date:"Mon Apr 20", home:"Edmonton",     homeScore:4, away:"Anaheim",    awayScore:3, ot:null, winner:"Edmonton" },
   // April 21 results
-  { series:"Colorado vs LA Kings",         game:2, date:"Mon Apr 21", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:"OT",  winner:"Colorado" },
-  { series:"Tampa Bay vs Montreal",        game:2, date:"Mon Apr 21", home:"Tampa Bay",    homeScore:3, away:"Montreal",  awayScore:2, ot:"OT",  winner:"Tampa Bay" },
+  { series:"Colorado vs LA Kings",        game:2, date:"Mon Apr 21", home:"Colorado",     homeScore:2, away:"LA Kings",   awayScore:1, ot:"OT",  winner:"Colorado" },
+  { series:"Tampa Bay vs Montreal",       game:2, date:"Mon Apr 21", home:"Tampa Bay",    homeScore:3, away:"Montreal",  awayScore:2, ot:"OT",  winner:"Tampa Bay" },
   { series:"Vegas vs Utah",               game:2, date:"Tue Apr 21", home:"Vegas",        homeScore:2, away:"Utah",     awayScore:3, ot:null,  winner:"Utah" },
   { series:"Buffalo vs Boston",           game:2, date:"Tue Apr 21", home:"Buffalo",      homeScore:2, away:"Boston",   awayScore:4, ot:null,  winner:"Boston" },
   // April 22 results
@@ -260,12 +260,12 @@ function build() {
       const { power, kano } = calcEarnings(g);
       const earn = power > 0 ? '<span class="earner-power">+$' + power + ' Power</span>'
                  : kano > 0  ? '<span class="earner-kano">+$' + kano + ' Kano</span>'
-                 : '<span class="earner-none">â€”</span>';
-      const score = played ? g.home + " " + g.homeScore + "â€“" + g.awayScore + " " + g.away
+                 : '<span class="earner-none">—</span>';
+      const score = played ? g.home + " " + g.homeScore + "–" + g.awayScore + " " + g.away
                            : g.home + " vs " + g.away;
       const otStr = g.ot ? '<span class="badge-ot">' + g.ot + '</span>'
                          : played ? '<span class="badge-win">REG</span>'
-                         : '<span class="badge-upcoming">â€”</span>';
+                         : '<span class="badge-upcoming">—</span>';
       const win = played ? "<strong>" + g.winner + "</strong>"
                          : '<span class="badge-upcoming">' + g.date + "</span>";
       return '<tr class="' + (played ? "played" : "upcoming") + '">' +
@@ -273,9 +273,9 @@ function build() {
     }).join("");
     card.innerHTML =
       '<div class="series-head">' +
-        '<div class="team-pick"><div class="team-name">' + pp + '</div><div class="picker power-pick">âš¡ Power</div></div>' +
-        '<div class="series-status"><div class="series-record">' + pwins + "â€“" + kwins + '</div><div class="series-label">series</div></div>' +
-        '<div class="team-pick right"><div class="team-name">' + kp + '</div><div class="picker kano-pick">ðŸ¤™ Kano</div></div>' +
+        '<div class="team-pick"><div class="team-name">' + pp + '</div><div class="picker power-pick">⚡ Power</div></div>' +
+        '<div class="series-status"><div class="series-record">' + pwins + "–" + kwins + '</div><div class="series-label">series</div></div>' +
+        '<div class="team-pick right"><div class="team-name">' + kp + '</div><div class="picker kano-pick">🤙 Kano</div></div>' +
       "</div>" +
       '<div class="money-row"><div><div class="label">Power earnings</div><div class="val power">$' + sm.power + '</div></div>' +
       '<div><div class="label">Kano earnings</div><div class="val kano">$' + sm.kano + '</div></div></div>' +
