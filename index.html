@@ -114,7 +114,11 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
+<<<<<<< HEAD
   <div class="updated">Last updated: Monday, April 27, 2026 · Games through April 26 (all complete)</div>
+=======
+  <div class="updated">Last updated: Monday, April 27, 2026 · Games through April 26 · Series bonuses added</div>
+>>>>>>> 3a9992a7de879f8b0bed0db2b42787e90df6ee4e
 </div>
 
 <div class="scoreboard">
@@ -145,10 +149,31 @@
 <div class="series-list" id="series-list"></div>
 
 <div class="footer">
-  🏆 $50/win · +$20/OT period · $100 series bonus · Built by Dude 🤙
+  🏒 $50/game win · +$20/OT period · Series bonus: R1 $100 · R2 $200 · R3 $300 · SCF $500 · Built by Dude 🤙
 </div>
 
 <script>
+// Series bonus by round
+const SERIES_BONUS = { 1: 100, 2: 200, 3: 300, 4: 500 };
+
+// Which round each series belongs to
+const SERIES_ROUND = {
+  "Carolina vs Ottawa":          1,
+  "Pittsburgh vs Philadelphia":  1,
+  "Tampa Bay vs Montreal":       1,
+  "Buffalo vs Boston":           1,
+  "Dallas vs Minnesota":         1,
+  "Colorado vs LA Kings":        1,
+  "Vegas vs Utah":               1,
+  "Edmonton vs Anaheim":         1,
+};
+
+// Completed series and their winners
+const SERIES_WINNERS = {
+  "Carolina vs Ottawa":   "Carolina",   // Carolina wins 4-0
+  "Colorado vs LA Kings": "Colorado",   // Colorado wins 4-0
+};
+
 const PICKS = {
   "Carolina vs Ottawa":           ["Carolina",      "Ottawa"],
   "Pittsburgh vs Philadelphia":   ["Pittsburgh",    "Philadelphia"],
@@ -231,6 +256,18 @@ function calcEarnings(game) {
   return { power: 0, kano: 0 };
 }
 
+function getSeriesBonus(sName) {
+  const winner = SERIES_WINNERS[sName];
+  if (!winner) return { power: 0, kano: 0 };
+  const [pp, kp] = PICKS[sName];
+  const round = SERIES_ROUND[sName] || 1;
+  const bonus = SERIES_BONUS[round] || 100;
+  const w = winner.toLowerCase();
+  if (w.includes(pp.toLowerCase())) return { power: bonus, kano: 0 };
+  if (w.includes(kp.toLowerCase())) return { power: 0, kano: bonus };
+  return { power: 0, kano: 0 };
+}
+
 function build() {
   let pt = 0, kt = 0, pw = 0, kw = 0;
   const sg = {};
@@ -241,6 +278,11 @@ function build() {
     pt += power; kt += kano;
     if (power > 0) pw++;
     if (kano > 0) kw++;
+  }
+  // Add all completed series bonuses to totals
+  for (const s of SERIES_ORDER) {
+    const { power, kano } = getSeriesBonus(s);
+    pt += power; kt += kano;
   }
 
   document.getElementById("power-total").textContent = "$" + pt;
@@ -273,6 +315,12 @@ function build() {
         sm.power += e.power; sm.kano += e.kano;
       }
     }
+    const sb = getSeriesBonus(sName);
+    sm.power += sb.power; sm.kano += sb.kano;
+    const seriesComplete = !!SERIES_WINNERS[sName];
+    const seriesBonusAmt = sb.power + sb.kano;
+    const seriesBonusWinner = sb.power > 0 ? "Power" : "Kano";
+    const seriesBonusClass = sb.power > 0 ? "power" : "kano";
     const card = document.createElement("div");
     card.className = "series-card";
     const rows = games.map(g => {
@@ -299,6 +347,7 @@ function build() {
       "</div>" +
       '<div class="money-row"><div><div class="label">Power earnings</div><div class="val power">$' + sm.power + '</div></div>' +
       '<div><div class="label">Kano earnings</div><div class="val kano">$' + sm.kano + '</div></div></div>' +
+      (seriesComplete && seriesBonusAmt > 0 ? '<div class="money-row" style="background:rgba(255,255,255,0.04)"><div><div class="label">Series bonus (R' + (SERIES_ROUND[sName]||1) + ')</div><div class="val ' + seriesBonusClass + '">+$' + seriesBonusAmt + ' ' + seriesBonusWinner + ' 🏆</div></div><div></div></div>' : '') +
       '<table class="games-table"><colgroup><col class="col-gm"><col class="col-date"><col class="col-score"><col class="col-ot"><col class="col-winner"><col class="col-earns"></colgroup><thead><tr><th>Gm</th><th>Date</th><th>Score</th><th>OT</th><th>Winner</th><th>Earns</th></tr></thead><tbody>' +
       rows + "</tbody></table>";
     container.appendChild(card);
