@@ -114,7 +114,7 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Friday, May 1, 2026 · Games through April 30 · Series bonuses added</div>
+  <div class="updated">Last updated: Friday, May 1, 2026 · Games through May 1 · Series bonuses added</div>
 </div>
 
 <div class="scoreboard">
@@ -171,6 +171,7 @@ const SERIES_WINNERS = {
   "Pittsburgh vs Philadelphia":  "Philadelphia",  // Philadelphia wins 4-2
   "Dallas vs Minnesota":         "Minnesota",     // Minnesota wins 4-2
   "Edmonton vs Anaheim":         "Anaheim",       // Anaheim wins 4-2
+  "Buffalo vs Boston":           "Buffalo",       // Buffalo wins 4-2
 };
 
 const PICKS = {
@@ -240,6 +241,9 @@ const GAMES = [
   // April 30 results
   { series:"Dallas vs Minnesota",         game:6, date:"Thu Apr 30", home:"Minnesota",    homeScore:5, away:"Dallas",        awayScore:2, ot:null, winner:"Minnesota" },
   { series:"Edmonton vs Anaheim",         game:6, date:"Thu Apr 30", home:"Anaheim",      homeScore:5, away:"Edmonton",      awayScore:2, ot:null, winner:"Anaheim" },
+  // May 1 results
+  { series:"Tampa Bay vs Montreal",       game:6, date:"Fri May 1",  home:"Montreal",     homeScore:0, away:"Tampa Bay",     awayScore:1, ot:"OT",  winner:"Tampa Bay" },
+  { series:"Buffalo vs Boston",           game:6, date:"Fri May 1",  home:"Boston",       homeScore:1, away:"Buffalo",      awayScore:4, ot:null, winner:"Buffalo" },
 ];
 
 const SERIES_ORDER = [
