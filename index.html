@@ -114,7 +114,7 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Sunday, May 3, 2026 · Games through May 3 · R1: All 8 series complete</div>
+  <div class="updated">Last updated: Sunday, May 3, 2026 · R1 complete · R2 underway · Games through May 3</div>
 </div>
 
 <div class="scoreboard">
@@ -141,8 +141,11 @@
   <span class="leading" id="leading-text" style="color:var(--muted)">Even</span>
 </div>
 
-<div class="round-header">Round 1 — First Round</div>
-<div class="series-list" id="series-list"></div>
+<div class="round-header">Round 2 — Second Round</div>
+<div class="series-list" id="series-list-r2"></div>
+
+<div class="round-header" style="margin-top:24px">Round 1 — First Round (Complete)</div>
+<div class="series-list" id="series-list-r1"></div>
 
 <div class="footer">
   🏒 $50/game win · +$20/OT period · Series bonus: R1 $100 · R2 $200 · R3 $300 · SCF $500 · Built by Dude 🤙
@@ -154,6 +157,7 @@ const SERIES_BONUS = { 1: 100, 2: 200, 3: 300, 4: 500 };
 
 // Which round each series belongs to
 const SERIES_ROUND = {
+  // Round 1
   "Carolina vs Ottawa":          1,
   "Pittsburgh vs Philadelphia":  1,
   "Tampa Bay vs Montreal":       1,
@@ -162,6 +166,11 @@ const SERIES_ROUND = {
   "Colorado vs LA Kings":        1,
   "Vegas vs Utah":               1,
   "Edmonton vs Anaheim":         1,
+  // Round 2
+  "Buffalo vs Montreal":         2,
+  "Carolina vs Philadelphia":    2,
+  "Colorado vs Minnesota":       2,
+  "Vegas vs Anaheim":            2,
 };
 
 // Completed series and their winners
@@ -177,6 +186,7 @@ const SERIES_WINNERS = {
 };
 
 const PICKS = {
+  // Round 1
   "Carolina vs Ottawa":           ["Carolina",      "Ottawa"],
   "Pittsburgh vs Philadelphia":   ["Pittsburgh",    "Philadelphia"],
   "Tampa Bay vs Montreal":        ["Montreal",      "Tampa Bay"],
@@ -185,6 +195,11 @@ const PICKS = {
   "Colorado vs LA Kings":         ["Colorado",      "LA Kings"],
   "Vegas vs Utah":                ["Vegas",         "Utah"],
   "Edmonton vs Anaheim":          ["Anaheim",       "Edmonton"],
+  // Round 2 — Power pick first, then Kano
+  "Buffalo vs Montreal":          ["Montreal",      "Buffalo"],    // Power=Montreal, Kano=Buffalo
+  "Carolina vs Philadelphia":     ["Carolina",      "Philadelphia"], // Power=Carolina, Kano=Philadelphia
+  "Colorado vs Minnesota":        ["Minnesota",     "Colorado"],    // Power=Minnesota, Kano=Colorado
+  "Vegas vs Anaheim":             ["Anaheim",       "Vegas"],       // Power=Anaheim, Kano=Vegas
 };
 
 const GAMES = [
@@ -251,7 +266,7 @@ const GAMES = [
   { series:"Tampa Bay vs Montreal",       game:7, date:"Sun May 3",  home:"Tampa Bay",    homeScore:1, away:"Montreal",      awayScore:2, ot:"OT",  winner:"Montreal" },
 ];
 
-const SERIES_ORDER = [
+const SERIES_ORDER_R1 = [
   "Carolina vs Ottawa",
   "Pittsburgh vs Philadelphia",
   "Tampa Bay vs Montreal",
@@ -261,6 +276,15 @@ const SERIES_ORDER = [
   "Vegas vs Utah",
   "Edmonton vs Anaheim",
 ];
+
+const SERIES_ORDER_R2 = [
+  "Buffalo vs Montreal",
+  "Carolina vs Philadelphia",
+  "Colorado vs Minnesota",
+  "Vegas vs Anaheim",
+];
+
+const SERIES_ORDER = [...SERIES_ORDER_R2, ...SERIES_ORDER_R1];
 
 function otPeriods(ot) {
   if (!ot) return 0;
@@ -323,9 +347,9 @@ function build() {
     else              document.getElementById("leading-text").textContent = "Tied";
   }
 
-  const container = document.getElementById("series-list");
-  container.innerHTML = "";
-  for (const sName of SERIES_ORDER) {
+  function renderSeries(containerEl, seriesList) {
+    containerEl.innerHTML = "";
+    for (const sName of seriesList) {
     const games = sg[sName] || [];
     const [pp, kp] = PICKS[sName];
     let pwins = 0, kwins = 0, sm = { power: 0, kano: 0 };
@@ -373,8 +397,12 @@ function build() {
       (seriesComplete && seriesBonusAmt > 0 ? '<div class="money-row" style="background:rgba(255,255,255,0.04)"><div><div class="label">Series bonus (R' + (SERIES_ROUND[sName]||1) + ')</div><div class="val ' + seriesBonusClass + '">+$' + seriesBonusAmt + ' ' + seriesBonusWinner + ' 🏆</div></div><div></div></div>' : '') +
       '<table class="games-table"><colgroup><col class="col-gm"><col class="col-date"><col class="col-score"><col class="col-ot"><col class="col-winner"><col class="col-earns"></colgroup><thead><tr><th>Gm</th><th>Date</th><th>Score</th><th>OT</th><th>Winner</th><th>Earns</th></tr></thead><tbody>' +
       rows + "</tbody></table>";
-    container.appendChild(card);
+      containerEl.appendChild(card);
+    }
   }
+
+  renderSeries(document.getElementById("series-list-r2"), SERIES_ORDER_R2);
+  renderSeries(document.getElementById("series-list-r1"), SERIES_ORDER_R1);
 }
 
 build();
