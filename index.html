@@ -114,7 +114,7 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Saturday, May 9, 2026 · R1 complete · R2 underway · CAR leads PHI 3-0 · BUF-MTL tied 1-1 · COL leads MIN 2-0 · VGK leads ANA 2-1</div>
+  <div class="updated">Last updated: Saturday, May 9, 2026 · R1 complete · CAR sweeps PHI 4-0 · BUF-MTL tied 1-1 · COL leads MIN 2-0 · VGK leads ANA 2-1</div>
 </div>
 
 <div class="scoreboard">
@@ -183,6 +183,7 @@ const SERIES_WINNERS = {
   "Buffalo vs Boston":           "Buffalo",       // Buffalo wins 4-2
   "Vegas vs Utah":               "Vegas",         // Vegas wins 4-2
   "Tampa Bay vs Montreal":       "Montreal",      // Montreal wins 4-3 (Game 7 OT)
+  "Carolina vs Philadelphia":    "Carolina",      // Carolina wins 4-0 (sweep)
 };
 
 const PICKS = {
@@ -264,7 +265,7 @@ const GAMES = [
   { series:"Vegas vs Utah",               game:6, date:"Fri May 1",  home:"Utah",         homeScore:1, away:"Vegas",         awayScore:5, ot:null, winner:"Vegas" },
   // May 3 results
   { series:"Tampa Bay vs Montreal",       game:7, date:"Sun May 3",  home:"Tampa Bay",    homeScore:1, away:"Montreal",      awayScore:2, ot:"OT",  winner:"Montreal" },
-  // Round 2 — May 3
+  // Round 2 — May 2
   { series:"Carolina vs Philadelphia",    game:1, date:"Sat May 2",  home:"Carolina",     homeScore:3, away:"Philadelphia",  awayScore:0, ot:null, winner:"Carolina" },
   // May 3 Round 2
   { series:"Colorado vs Minnesota",        game:1, date:"Sun May 3",  home:"Colorado",     homeScore:9, away:"Minnesota",      awayScore:6, ot:null, winner:"Colorado" },
@@ -281,6 +282,8 @@ const GAMES = [
   // May 8 results
   { series:"Buffalo vs Montreal",         game:2, date:"Fri May 8",  home:"Buffalo",      homeScore:1, away:"Montreal",      awayScore:5, ot:null, winner:"Montreal" },
   { series:"Vegas vs Anaheim",            game:3, date:"Fri May 8",  home:"Anaheim",      homeScore:2, away:"Vegas",         awayScore:6, ot:null, winner:"Vegas" },
+  // May 9 results
+  { series:"Carolina vs Philadelphia",    game:4, date:"Sat May 9",  home:"Philadelphia", homeScore:2, away:"Carolina",      awayScore:3, ot:"OT",  winner:"Carolina" },
 ];
 
 const SERIES_ORDER_R1 = [
@@ -424,5 +427,6 @@ function build() {
 
 build();
 </script>
+
 </body>
 </html>
