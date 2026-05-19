@@ -114,7 +114,7 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Monday, May 18, 2026 · No games Sun May 17 (off day) · 🚨 BUF vs MTL G7 TONIGHT 7:30 PM ET · COL vs VGK WCF starts Wed May 20</div>
+  <div class="updated">Last updated: Monday, May 18, 2026 · 🚨 MTL wins G7 in OT 3–2 · Montreal advances to East Final · COL vs VGK WCF starts Wed May 20</div>
 </div>
 
 <div class="scoreboard">
@@ -186,6 +186,7 @@ const SERIES_WINNERS = {
   "Carolina vs Philadelphia":    "Carolina",      // Carolina wins 4-0 (sweep)
   "Colorado vs Minnesota":        "Colorado",      // Colorado wins 4-1
   "Vegas vs Anaheim":             "Vegas",          // Vegas wins 4-2
+  "Buffalo vs Montreal":          "Montreal",      // Montreal wins 4-3 (Game 7 OT)
 };
 
 const PICKS = {
@@ -302,6 +303,8 @@ const GAMES = [
   { series:"Vegas vs Anaheim",            game:6, date:"Thu May 14", home:"Anaheim",      homeScore:1, away:"Vegas",         awayScore:5, ot:null, winner:"Vegas" },
   // May 16 results
   { series:"Buffalo vs Montreal",         game:6, date:"Sat May 16", home:"Buffalo",      homeScore:8, away:"Montreal",      awayScore:3, ot:null, winner:"Buffalo" },
+  // May 18 results
+  { series:"Buffalo vs Montreal",         game:7, date:"Mon May 18", home:"Buffalo",      homeScore:2, away:"Montreal",      awayScore:3, ot:"OT",  winner:"Montreal" },
 ];
 
 const SERIES_ORDER_R1 = [
