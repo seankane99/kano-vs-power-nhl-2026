@@ -114,7 +114,7 @@
 <div class="header">
   <h1>🏒 Kano vs Power</h1>
   <div class="subtitle">2026 NHL Stanley Cup Playoffs</div>
-  <div class="updated">Last updated: Wednesday, May 20, 2026 · ✅ All R2 complete · 🏒 WCF Game 1: COL vs VGK TONIGHT 8PM ET · ECF: CAR vs MTL starts Thu May 21</div>
+  <div class="updated">Last updated: Wednesday, May 20, 2026 · ✅ All R2 complete · 🏒 R3 underway: WCF COL vs VGK · ECF CAR vs MTL</div>
 </div>
 
 <div class="scoreboard">
@@ -141,7 +141,10 @@
   <span class="leading" id="leading-text" style="color:var(--muted)">Even</span>
 </div>
 
-<div class="round-header">Round 2 — Second Round</div>
+<div class="round-header">Round 3 — Conference Finals</div>
+<div class="series-list" id="series-list-r3"></div>
+
+<div class="round-header" style="margin-top:24px">Round 2 — Second Round (Complete)</div>
 <div class="series-list" id="series-list-r2"></div>
 
 <div class="round-header" style="margin-top:24px">Round 1 — First Round (Complete)</div>
@@ -171,6 +174,9 @@ const SERIES_ROUND = {
   "Carolina vs Philadelphia":    2,
   "Colorado vs Minnesota":       2,
   "Vegas vs Anaheim":            2,
+  // Round 3
+  "Carolina vs Montreal":        3,
+  "Colorado vs Vegas":           3,
 };
 
 // Completed series and their winners
@@ -187,6 +193,9 @@ const SERIES_WINNERS = {
   "Colorado vs Minnesota":        "Colorado",      // Colorado wins 4-1
   "Vegas vs Anaheim":             "Vegas",          // Vegas wins 4-2
   "Buffalo vs Montreal":          "Montreal",      // Montreal wins 4-3 (Game 7 OT)
+  // Round 3 — in progress
+  // "Carolina vs Montreal":     "TBD",
+  // "Colorado vs Vegas":        "TBD",
 };
 
 const PICKS = {
@@ -204,6 +213,9 @@ const PICKS = {
   "Carolina vs Philadelphia":     ["Carolina",      "Philadelphia"], // Power=Carolina, Kano=Philadelphia
   "Colorado vs Minnesota":        ["Minnesota",     "Colorado"],    // Power=Minnesota, Kano=Colorado
   "Vegas vs Anaheim":             ["Anaheim",       "Vegas"],       // Power=Anaheim, Kano=Vegas
+  // Round 3 — Power pick first, then Kano
+  "Carolina vs Montreal":         ["Montreal",      "Carolina"],   // Power=Montreal, Kano=Carolina
+  "Colorado vs Vegas":            ["Colorado",      "Vegas"],      // Power=Colorado, Kano=Vegas
 };
 
 const GAMES = [
@@ -325,7 +337,12 @@ const SERIES_ORDER_R2 = [
   "Vegas vs Anaheim",
 ];
 
-const SERIES_ORDER = [...SERIES_ORDER_R2, ...SERIES_ORDER_R1];
+const SERIES_ORDER_R3 = [
+  "Carolina vs Montreal",
+  "Colorado vs Vegas",
+];
+
+const SERIES_ORDER = [...SERIES_ORDER_R3, ...SERIES_ORDER_R2, ...SERIES_ORDER_R1];
 
 function otPeriods(ot) {
   if (!ot) return 0;
@@ -442,6 +459,7 @@ function build() {
     }
   }
 
+  renderSeries(document.getElementById("series-list-r3"), SERIES_ORDER_R3);
   renderSeries(document.getElementById("series-list-r2"), SERIES_ORDER_R2);
   renderSeries(document.getElementById("series-list-r1"), SERIES_ORDER_R1);
 }
